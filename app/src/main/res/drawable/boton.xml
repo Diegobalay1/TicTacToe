@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Presionado -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#DE5BD2" />
+            <corners android:radius="@dimen/radio_boton" />
+        </shape>
+    </item>
+
+    <!-- Desactivado -->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#303F8F" />
+            <corners android:radius="@dimen/radio_boton" />
+        </shape>
+    </item>
+
+    <!-- Por defecto 'Desactivado o estado de Reposo' Siempre irá el último -->
+    <item>
+
+        <shape>
+
+            <gradient android:startColor="@color/rosa"
+                      android:endColor="@color/morado"
+                      android:angle="270" />
+            <corners android:radius="@dimen/radio_boton" />
+
+        </shape>
+
+    </item>
+
+</selector>
