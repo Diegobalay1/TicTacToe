@@ -99,7 +99,15 @@ public class MainActivity extends Activity {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();*/
 
+        if (!partida.comprueba_casilla(casilla)) return;
         marca(casilla);
+        do {
+            casilla = partida.ia();
+        }
+        while (!partida.comprueba_casilla(casilla));
+        partida.turno();
+        marca(casilla);
+        partida.turno();
 
     }
 
@@ -107,15 +115,19 @@ public class MainActivity extends Activity {
     private void marca(int casilla){
         ImageView imagen;
         imagen = (ImageView)findViewById(CASILLAS[casilla]);
-        if (partida.getJugador() == 1){
+        /*if (partida.getJugador() == 1){
             imagen.setImageResource(R.drawable.circulo);
         } else {
             imagen.setImageResource(R.drawable.aspa);
+        }*/
+        switch (partida.getJugador()){
+            case 1:
+                imagen.setImageResource(R.drawable.circulo);
+                break;
+            case 2:
+                imagen.setImageResource(R.drawable.aspa);
         }
     }
-
-
-    //Vídeo en el que vamos 48
 
 
 
