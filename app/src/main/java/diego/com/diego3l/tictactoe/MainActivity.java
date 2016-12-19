@@ -101,11 +101,12 @@ public class MainActivity extends Activity {
 
         if (!partida.comprueba_casilla(casilla)) return;
         marca(casilla);
+        partida.turno();
         do {
             casilla = partida.ia();
         }
         while (!partida.comprueba_casilla(casilla));
-        partida.turno();
+
         marca(casilla);
         partida.turno();
 
