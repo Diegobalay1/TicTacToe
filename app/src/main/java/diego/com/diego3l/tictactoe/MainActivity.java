@@ -71,11 +71,10 @@ public class MainActivity extends Activity {
 
         partida = new Partida(dificultad);
 
-        //Inhabilitamos botonos una vez a empezado la partida
+        //Inhabilitamos botonos una vez ha empezado la partida
         ((Button)findViewById(R.id.unjug)).setEnabled(false);
         ((Button)findViewById(R.id.dosjug)).setEnabled(false);
         ((RadioGroup)findViewById(R.id.configD)).setAlpha(0);
-        //((RadioGroup)findViewById(R.id.configD)).setEnabled(false);
 
         ((TextView)findViewById(R.id.titulo)).setAlpha(0);
 
@@ -95,21 +94,46 @@ public class MainActivity extends Activity {
             }
         }
 
-        /*Toast toast = Toast.makeText(this, "Has pulsado la casilla " + casilla, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();*/
 
         if (!partida.comprueba_casilla(casilla)) return;
         marca(casilla);
-        partida.turno();
+        int resultado = partida.turno();
+        if (resultado > 0) {
+            termina(resultado);
+            return;
+        }
         do {
             casilla = partida.ia();
         }
         while (!partida.comprueba_casilla(casilla));
 
         marca(casilla);
-        partida.turno();
+        resultado = partida.turno();
+        if (resultado > 0) {
+            termina(resultado);
+        }
 
+    }
+
+    //Método que determina un resultado final de la partida
+    private void termina(int resultado){
+        String mensaje;
+        if (resultado == 1) mensaje = getString(R.string.circulos_ganan);
+        else if (resultado == 2) mensaje = getString(R.string.aspas_ganan);
+        else mensaje = getString(R.string.empate);
+
+        Toast toast = Toast.makeText(this, mensaje, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+        partida = null; //partida inhabilitada
+
+        //Habilitamos botonos una vez ha terminado la partida
+        ((Button)findViewById(R.id.unjug)).setEnabled(true);
+        ((Button)findViewById(R.id.dosjug)).setEnabled(true);
+        ((RadioGroup)findViewById(R.id.configD)).setAlpha(1);
+
+        ((TextView)findViewById(R.id.titulo)).setAlpha(1);
     }
 
     //Método encargado de marcar la casilla
