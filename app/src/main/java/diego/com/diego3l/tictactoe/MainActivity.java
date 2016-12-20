@@ -127,6 +127,7 @@ public class MainActivity extends Activity {
                 break;
             case 2:
                 imagen.setImageResource(R.drawable.aspa);
+                break;
         }
     }
 

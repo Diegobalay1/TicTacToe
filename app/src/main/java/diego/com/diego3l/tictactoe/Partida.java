@@ -73,6 +73,25 @@ public class Partida {
         return 0;
     }
 
+    //Método que nos devolverá la casilla clave para hacer 3 en raya
+    public int dosEnRaya(int jugador_en_turno){
+        int casilla = -1;
+        int cuantas_lleva = 0;
+        for (int i=0; i<COMBINACIONES.length; i++){
+            for (int pos:
+                 COMBINACIONES[i]) {
+                if (casillas[pos] == jugador_en_turno) cuantas_lleva++;
+                if (casillas[pos] == 0) casilla = pos;
+            }
+            if (cuantas_lleva==2 && casilla!=-1) return casilla;
+            //Ahora reseteamos para volver a evaluar
+            casilla = -1;
+            cuantas_lleva = 0;
+        }
+
+        return -1;
+    }
+
     //Método encargado de jugar contra nosotros
     public int ia(){
         int casilla;
@@ -84,4 +103,4 @@ public class Partida {
 }
 
 
-    //Video dejado 52. Minuto 6
+    //Video dejado 54. Minuto ..
