@@ -95,6 +95,22 @@ public class Partida {
     //Método encargado de jugar contra nosotros
     public int ia(){
         int casilla;
+        casilla = dosEnRaya(2);
+        if (casilla != -1) return casilla; //Si.. La máquina hará 3enRaya
+
+        if (dificultad > 0){ //Nivel de dificultad para normal o imposible
+            casilla = dosEnRaya(1);
+            if (casilla != -1) return casilla; //Si.. evitará que hagamos 3enRaya
+        }
+
+        if (dificultad == 2){ //Nivel de dificultad imposible
+            if (casillas[4] == 0) return 4;
+            if (casillas[0] == 0) return 0;
+            if (casillas[2] == 0) return 2;
+            if (casillas[6] == 0) return 6;
+            if (casillas[8] == 0) return 8;
+        }
+
         Random casilla_azar = new Random();
         casilla = casilla_azar.nextInt(9);
         return casilla;
