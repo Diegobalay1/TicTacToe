@@ -94,23 +94,33 @@ public class MainActivity extends Activity {
             }
         }
 
+        if (jugadores == 2) {
+            if (!partida.comprueba_casilla(casilla)) return;
+            marca(casilla);
+            int resultado = partida.turno();
+            if (resultado > 0) {
+                termina(resultado);
+                return;
+            }
+        } else {
 
-        if (!partida.comprueba_casilla(casilla)) return;
-        marca(casilla);
-        int resultado = partida.turno();
-        if (resultado > 0) {
-            termina(resultado);
-            return;
-        }
-        do {
-            casilla = partida.ia();
-        }
-        while (!partida.comprueba_casilla(casilla));
+            if (!partida.comprueba_casilla(casilla)) return;
+            marca(casilla);
+            int resultado = partida.turno();
+            if (resultado > 0) {
+                termina(resultado);
+                return;
+            }
+            do {
+                casilla = partida.ia();
+            }
+            while (!partida.comprueba_casilla(casilla));
 
-        marca(casilla);
-        resultado = partida.turno();
-        if (resultado > 0) {
-            termina(resultado);
+            marca(casilla);
+            resultado = partida.turno();
+            if (resultado > 0) {
+                termina(resultado);
+            }
         }
 
     }

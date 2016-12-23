@@ -1,5 +1,7 @@
 package diego.com.diego3l.tictactoe;
 
+import android.widget.Button;
+
 import java.util.Random;
 
 /**
